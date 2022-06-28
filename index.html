@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Machine</title>
+  </head>
+  <body>
+    <input id="rate-slider" type="range" min="50" max="500" value="500" />
+    <script>
+      let rate = 500;
+      let on = false;
+
+      function step() {
+        on = !on;
+        document.body.style.background = on ? 'white' : 'black';
+        setTimeout(step, rate);
+      }
+
+      document.getElementById('rate-slider').oninput = (e) => {
+        rate = e.currentTarget.value;
+      };
+
+      step();
+    </script>
+  </body>
+</html>
