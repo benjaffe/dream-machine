@@ -5,9 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dream Machine</title>
+    <style id="style">
+      body {
+        transition: all 0.5s;
+      }
+    </style>
   </head>
   <body>
+    Rate
+    <br />
     <input id="rate-slider" type="range" min="50" max="500" value="500" />
+    <br />
+    Fade
+    <br />
+    <input id="fade-slider" type="range" min="0" max="100" value="100" />
     <script>
       let rate = 500;
       let on = false;
@@ -20,6 +31,12 @@
 
       document.getElementById('rate-slider').oninput = (e) => {
         rate = e.currentTarget.value;
+      };
+      document.getElementById('fade-slider').oninput = (e) => {
+        const duration = (e.currentTarget.value / 100) * (rate / 1000);
+        document.getElementById(
+          'style',
+        ).innerHTML = `body {transition: all ${duration}s;}`;
       };
 
       step();
